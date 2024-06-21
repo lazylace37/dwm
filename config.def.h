@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -115,6 +117,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd} },
+	{ 0,                            XF86XK_MonBrightnessDown,  spawn,         SHCMD("brightnessctl set 1%-") },
+	{ 0,                            XF86XK_MonBrightnessUp,    spawn,         SHCMD("brightnessctl set +1%") },
+	{ 0,                            XF86XK_AudioMute,          spawn,         SHCMD("pactl set-sink-mute 0 toggle; kill -42 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,   spawn,         SHCMD("pactl set-sink-volume 0 -5%; kill -42 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,         SHCMD("pactl set-sink-volume 0 +5%; kill -42 $(pidof dwmblocks)") },
 };
 
 /* button definitions */
