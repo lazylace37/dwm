@@ -77,7 +77,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *lockcmd[]  = { "slock", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -116,7 +115,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd} },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("xidlehook-client --socket /tmp/xidlehook.sock control --action trigger --timer 1") },
 	{ 0,                            XF86XK_MonBrightnessDown,  spawn,         SHCMD("brightnessctl set 1%-") },
 	{ 0,                            XF86XK_MonBrightnessUp,    spawn,         SHCMD("brightnessctl set +1%") },
 	{ 0,                            XF86XK_AudioMute,          spawn,         SHCMD("pactl set-sink-mute 0 toggle; kill -42 $(pidof dwmblocks)") },
@@ -137,7 +136,7 @@ static const Button buttons[] = {
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        viewall,           {0} },
+	{ ClkTagBar,            0,              Button1,        viewall,        {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
