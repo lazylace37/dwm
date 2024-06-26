@@ -121,6 +121,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,          spawn,         SHCMD("pactl set-sink-mute 0 toggle; kill -42 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioLowerVolume,   spawn,         SHCMD("pactl set-sink-volume 0 -5%; kill -42 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,         SHCMD("pactl set-sink-volume 0 +5%; kill -42 $(pidof dwmblocks)") },
+	{ 0,                            XK_Print,                  spawn,         SHCMD("scrot -s ~/Pictures/Screenshots/%Y-%m-%d-%H-%M-%S_$wx$h_scrot.png -e 'xclip -selection clipboard -t image/png -i $f'") },
 };
 
 /* button definitions */
