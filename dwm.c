@@ -754,7 +754,7 @@ drawbar(Monitor *m)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	if (/*m == selmon*/1) { /* status is only drawn on selected monitor */
                 char *stc = stextc;
                 char *stp = stextc;
                 char tmp;
@@ -803,11 +803,11 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
-        if (m == selmon) {
+        /*if (m == selmon) {*/
                 blw = w, ble = x;
                 w = m->ww - wstext - x;
-        } else
-                w = m->ww - x;
+        /*} else*/
+        /*        w = m->ww - x;*/
 
 	if (w > bh) {
 		if (m->sel) {
@@ -1332,7 +1332,7 @@ propertynotify(XEvent *e)
 		}
 		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName]) {
 			updatetitle(c);
-			if (c == c->mon->sel)
+			/*if (c == c->mon->sel)*/
 				drawbar(c->mon);
 		}
 		if (ev->atom == netatom[NetWMWindowType])
@@ -2237,7 +2237,8 @@ updatestatus(void)
                 strcpy(stexts, stextc);
                 wstext = TTEXTW(stextc) + LSPAD + RSPAD;
         }
-        drawbar(selmon);
+        /*drawbar(selmon);*/
+        drawbars();
 }
 
 void
